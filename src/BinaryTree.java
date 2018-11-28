@@ -1,5 +1,3 @@
-import jdk.nashorn.api.tree.Tree;
-
 public class BinaryTree {
 
     private TreeNode root;
@@ -63,17 +61,26 @@ public class BinaryTree {
             }
             return next.data;
         }
+
+        private void printTreeNode(TreeNode treeNode){
+            System.out.println("ROOT: ");
+            System.out.println(treeNode.data);
+            System.out.println("LEFT: ");
+            if(treeNode.left != null){
+                printTreeNode(treeNode.left);
+            }
+//            if(treeNode.right != null){
+//                printTreeNode(treeNode.right);
+//            }
+
+        }
+
     }
 
 
     BinaryTree(){
         this.root = null;
     }
-
-//    BinaryTree(BinaryTreeNode root){
-//        this.root = root;
-//    }
-
 
     public int size() {
         return this.size;
@@ -95,11 +102,15 @@ public class BinaryTree {
         }else{
             this.root.addTreeNode(treeNode);
         }
+        this.size += 1;
 
     }
 
 
     public boolean exists(int value) {
+        if(this.root == null){
+            return false;
+        }
         return root.findTreeNode(value);
     }
 
@@ -119,8 +130,107 @@ public class BinaryTree {
         return this.root.findTreeNodeMin(this.root);
     }
 
+    public void printMe(){
+
+        this.root.printTreeNode(this.root);
+
+//        System.out.println("ROOT: ");
+//        System.out.println(this.root.data);
+//        System.out.println("LEFT: ");
+//        System.out.println(root.left.data);
+//        System.out.println("RIGHT: ");
+//        System.out.println(root.right.data);
+    }
+
 
     public static void main(String[] args){
+
+        //test1 create and check size = 0
+        System.out.println("###############################");
+        System.out.println("TEST 1");
+        System.out.println("###############################");
+        BinaryTree test1 = new BinaryTree();
+        System.out.print("IS EMPTY: ");
+        System.out.println(test1.isEmpty());
+
+        //test2 create and add only root
+        System.out.println("###############################");
+        System.out.println("TEST 2");
+        System.out.println("###############################");
+        BinaryTree test2 = new BinaryTree();
+        test2.add(0);
+        System.out.print("IS EMPTY: ");
+        System.out.println(test2.isEmpty());
+        System.out.print("DOES 0 EXIST? ");
+        System.out.println(test2.exists(0));
+
+
+        //TEST3
+        System.out.println("###############################");
+        System.out.println("TEST 3");
+        System.out.println("###############################");
+        BinaryTree test3 = new BinaryTree();
+        test3.add(10);
+        test3.add(5);
+        test3.add(15);
+        System.out.print("SIZE: ");
+        System.out.println(test3.size);
+
+        //TEST4
+        System.out.println("###############################");
+        System.out.println("TEST 4");
+        System.out.println("###############################");
+        BinaryTree test4 = new BinaryTree();
+        test4.add(10);
+        test4.add(5);
+        test4.add(4);
+        test4.add(6);
+        test4.add(15);
+        test4.add(16);
+        test4.add(13);
+        System.out.print("SIZE: ");
+        System.out.println(test4.size);
+        test4.printMe();
+
+        //TEST5
+        System.out.println("###############################");
+        System.out.println("TEST 5");
+        System.out.println("###############################");
+        BinaryTree test5 = new BinaryTree();
+        test5.add(10);
+        test5.add(5);
+        test5.add(4);
+        test5.add(6);
+        test5.add(15);
+        test5.add(16);
+        test5.add(13);
+        System.out.print("SIZE: ");
+        System.out.println(test5.size);
+        System.out.print("MIN: ");
+        System.out.println(test5.min());
+        System.out.print("MAX: ");
+        System.out.println(test5.max());
+        System.out.print("EXISTS: ");
+        System.out.println(test5.exists(20));
+        System.out.print("EXISTS: ");
+        System.out.println(test5.exists(16));
+
+
+        //test1 create and check size = 0
+        System.out.println("###############################");
+        System.out.println("TEST 6");
+        System.out.println("###############################");
+        BinaryTree test6 = new BinaryTree();
+        System.out.print("IS EMPTY: ");
+        System.out.println(test6.isEmpty());
+        System.out.print("EXISTS: ");
+        System.out.println(test6.exists(15));
+        System.out.println("ADDING 15...");
+        test6.add(15);
+        System.out.print("IS SIZE: ");
+        System.out.println(test6.size);
+        System.out.print("15 EXISTS? ");
+        System.out.print(test6.exists(15));
 
     }
 
